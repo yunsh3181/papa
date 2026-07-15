@@ -1,6 +1,6 @@
 /* v16 메뉴 데이터: 엑셀 명세 기반. 가격/품절/노출 변경은 이 파일에서 관리 */
 window.KIOSK_DATA = {
-  "version": "25",
+  "version": "26",
   "source": "파파존스_키오스크_이미지삽입_최종본.xlsx",
   "PIZZAS": [
     {
@@ -170,9 +170,9 @@ window.KIOSK_DATA = {
       "R": null,
       "L": null,
       "F": 0,
-      "hidden": true,
       "image": "crust_thin.png",
-      "desc": "THIN 피자 전용 크러스트"
+      "desc": "바삭하고 담백한 얇은 씬 크러스트",
+      "sizeLabel": "F 전용"
     },
     {
       "id": "C003",
