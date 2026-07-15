@@ -1,0 +1,366 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>파파존스 키오스크 v25</title>
+<style>
+:root{--g:#006b3c;--r:#d71920;--bg:#f3f5f2;--line:#e2e6e2;--ink:#20241f}*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}.app{min-height:100vh;padding-bottom:84px}.head{height:86px;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:20}.brand{display:flex;gap:14px;align-items:center;min-width:0;overflow:visible;padding:4px 0}.brandLogo{display:block;width:76px;height:62px;max-width:76px;max-height:62px;object-fit:contain;object-position:center;flex:0 0 auto}.brandName{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.heroLogo{display:block;width:94px;height:78px;object-fit:contain;object-position:center;margin:0 auto 18px}.progress{position:sticky;top:86px;z-index:18;background:#fff;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;overflow:auto;gap:8px}.progress span{white-space:nowrap;padding:7px 10px;border-radius:999px;background:#e9ece9;font-size:12px;font-weight:800}.progress .on{background:var(--r);color:#fff}.progress .done{background:var(--g);color:#fff}.stage{padding:24px;max-width:1200px;margin:auto}.title{font-size:36px;margin:0 0 8px}.sub{color:#6f766f;margin:0 0 22px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid.two{grid-template-columns:1fr 1fr}.grid.four{grid-template-columns:repeat(4,1fr)}.card{position:relative;background:#fff;border:2px solid transparent;border-radius:20px;padding:20px;text-align:left;box-shadow:0 6px 16px #1231;cursor:pointer}.card:hover,.card.active{border-color:var(--r)}.card:disabled{opacity:.35;cursor:not-allowed}.badge{position:absolute;right:10px;top:10px;background:var(--r);color:#fff;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:900}.pic{height:130px;border-radius:16px;background:radial-gradient(circle,#f4c26e 0 35%,#c83329 36% 42%,#f5d68b 43% 60%,transparent 61%),linear-gradient(135deg,#eee,#fff);display:grid;place-items:center;font-size:44px;margin-bottom:12px}.imagePic{background:#fff!important;overflow:hidden}.imagePic img{width:100%;height:100%;object-fit:cover}.crustGrid{grid-template-columns:repeat(4,1fr)}.crustCard{display:flex;flex-direction:column;min-height:390px}.crustPic{height:210px;background:#fff;border-radius:16px;overflow:hidden;margin:8px 0 14px}.crustPic img{width:100%;height:100%;object-fit:contain}.sizeTag{display:inline-block;background:var(--r);color:#fff;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;margin-left:6px}.price{color:var(--r);font-size:22px;font-weight:900}.muted{color:#747b74;font-size:13px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px}.tabs .active{background:var(--g);color:#fff}.qty{display:flex;align-items:center;justify-content:space-between;margin-top:12px}.qty button{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:10px}.summary{background:#fff;border-radius:20px;padding:20px}.row{display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px dashed var(--line)}.grand{font-size:25px;font-weight:900;border-top:2px solid #222;margin-top:10px}.discount{color:var(--r);font-weight:900}.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:40;height:72px;background:#17231d;color:#fff;display:flex;align-items:center;gap:10px;padding:8px 16px;box-shadow:0 -4px 18px #0003}.cartmain{flex:1;min-width:0}.carttitle{font-weight:900}.cartdetail{font-size:12px;color:#d2dad4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cartprice{font-size:20px;font-weight:900;white-space:nowrap}.cartbar button{border:0;border-radius:11px;padding:11px 13px;font-weight:900}.prev{background:#e4e8e4}.next{background:var(--r);color:#fff;transition:opacity .15s,background .15s}.next:disabled{background:#aeb4af!important;color:#eef0ee!important;opacity:.55;cursor:not-allowed;box-shadow:none}.hero{position:relative;min-height:100vh;background:linear-gradient(135deg,#075f39,#183e2e);display:grid;place-items:center;padding-top:110px}.heroBox{background:#fff;padding:36px;border-radius:28px;text-align:center;width:min(850px,90%)}.hero h1{font-size:50px}.start{background:var(--r);color:#fff;border:0;border-radius:18px;padding:20px 70px;font-size:26px;font-weight:900}.backdrop{position:fixed;inset:0;background:#0008;z-index:60;display:grid;place-items:center;padding:18px}.modal{background:#fff;border-radius:22px;padding:24px;width:min(560px,100%);max-height:88vh;overflow:auto}.modalBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.modalBtns button{border:0;border-radius:13px;padding:15px;font-weight:900}.halfPreview{display:grid;grid-template-columns:1fr 1fr;gap:12px}.preview{border:2px solid var(--g);border-radius:16px;padding:12px;text-align:center}.field{margin:16px 0}.field label{display:block;font-weight:900;margin-bottom:8px}.field input,.field select{width:100%;padding:15px;border:1px solid #bbb;border-radius:12px;font-size:19px}.notice{background:#fff5d9;border:1px solid #e5cf87;border-radius:13px;padding:13px;margin:14px 0}.done{text-align:center;padding:70px 20px}.wheelWrap{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;max-width:520px;margin:20px auto}.wheelCol{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px}.wheelCol label{display:block;font-weight:900;text-align:center;margin-bottom:8px}.wheelCol select{width:100%;height:210px;border:0;font-size:25px;text-align:center;background:#fff}.wheelSep{font-size:32px;font-weight:900}.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:420px;margin:18px auto}.keypad button{padding:18px;border:1px solid var(--line);background:#fff;border-radius:14px;font-size:24px;font-weight:900}.phoneDisplay{font-size:30px;letter-spacing:2px;text-align:center;background:#f7f8f7;border:2px solid var(--line);border-radius:16px;padding:18px}.disabledReason{font-size:12px;color:var(--r);font-weight:800;margin-top:8px}.done .num{font-size:58px;color:var(--r);font-weight:900}@media(max-width:800px){.grid,.grid.four,.crustGrid{grid-template-columns:repeat(2,1fr)}.title{font-size:28px}}@media(max-width:560px){.head{height:70px;padding:0 12px}.brandLogo{display:block;width:76px;height:62px;max-width:76px;max-height:62px;object-fit:contain;object-position:center;flex:0 0 auto}.brandName{display:none}.heroLogo{display:block;width:94px;height:78px;object-fit:contain;object-position:center;margin:0 auto 18px}.progress{top:70px}.grid,.grid.two,.grid.four,.halfPreview{grid-template-columns:1fr}.stage{padding:16px}.hero h1{font-size:34px}.start{width:100%;padding:18px}.cartdetail{display:none}.cartbar{padding:7px 9px}.cartbar button{padding:10px 9px}}
+
+/* ===== v24 Premium UI ===== */
+:root{
+  --g:#176b45;
+  --g2:#0d5033;
+  --r:#c8102e;
+  --r2:#a70c25;
+  --cream:#fff8ed;
+  --cream2:#f8eddd;
+  --surface:#fffdf8;
+  --surface-strong:#fff7e8;
+  --line:#eadfce;
+  --ink:#26231f;
+  --muted:#776f66;
+  --shadow:0 14px 34px rgba(73,48,24,.11);
+  --shadow-hover:0 22px 48px rgba(73,48,24,.18);
+}
+html{background:var(--cream)}
+body{
+  background:
+    radial-gradient(circle at 12% 4%,rgba(200,16,46,.055),transparent 28%),
+    radial-gradient(circle at 88% 16%,rgba(23,107,69,.06),transparent 26%),
+    linear-gradient(180deg,#fffaf2 0%,#f8efe2 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+}
+.app{overflow-x:hidden}
+.head{
+  height:88px;
+  background:linear-gradient(115deg,var(--g2),var(--g) 55%,#1c7650);
+  box-shadow:0 7px 22px rgba(12,65,41,.24);
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.brandLogo{
+  background:rgba(255,255,255,.96);
+  border-radius:14px;
+  padding:5px;
+  box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+.progress{
+  background:rgba(255,253,248,.94);
+  backdrop-filter:blur(16px);
+  padding:12px 20px;
+  box-shadow:0 8px 24px rgba(85,60,35,.06);
+}
+.progress span{
+  background:#eee5d7;
+  color:#6d6257;
+  border:1px solid transparent;
+  transition:transform .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.progress .on{
+  background:linear-gradient(135deg,var(--r),#e4314c);
+  box-shadow:0 6px 16px rgba(200,16,46,.23);
+  transform:translateY(-1px);
+}
+.progress .done{background:linear-gradient(135deg,var(--g2),var(--g))}
+.stage{padding:32px 28px 110px}
+.title{
+  font-size:38px;
+  letter-spacing:-1.2px;
+  color:#28231e;
+  text-shadow:0 1px 0 #fff;
+}
+.sub{color:var(--muted);font-size:15px}
+.grid{gap:20px}
+.card{
+  overflow:hidden;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.95),rgba(255,247,232,.96));
+  border:1px solid rgba(226,209,187,.9);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  transform:translateY(0) scale(1);
+  transition:
+    transform .18s cubic-bezier(.2,.8,.2,1),
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+  animation:cardIn .38s both;
+}
+.grid .card:nth-child(2){animation-delay:.035s}
+.grid .card:nth-child(3){animation-delay:.07s}
+.grid .card:nth-child(4){animation-delay:.105s}
+.grid .card:nth-child(5){animation-delay:.14s}
+.grid .card:nth-child(6){animation-delay:.175s}
+.grid .card:nth-child(n+7){animation-delay:.21s}
+.card::after{
+  content:"";
+  position:absolute;
+  inset:auto -35% -70% auto;
+  width:150px;height:150px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(200,16,46,.08),transparent 68%);
+  pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-6px) scale(1.012);
+  box-shadow:var(--shadow-hover);
+  border-color:rgba(200,16,46,.45);
+}
+.card:active{
+  transform:translateY(-1px) scale(.985);
+  transition-duration:.08s;
+}
+.card.active{
+  border:2px solid var(--r);
+  background:linear-gradient(155deg,#fff,#fff2ed);
+  box-shadow:0 0 0 4px rgba(200,16,46,.10),var(--shadow-hover);
+}
+.card h2,.card h3{letter-spacing:-.45px}
+.badge{
+  right:12px;top:12px;
+  background:linear-gradient(135deg,var(--r),#e62f4b);
+  box-shadow:0 7px 16px rgba(200,16,46,.22);
+}
+.pic{
+  height:164px;
+  border-radius:19px;
+  background-color:#f8efe2;
+  box-shadow:inset 0 0 0 1px rgba(225,207,183,.72);
+  transition:transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.card:hover .pic{transform:scale(1.035)}
+.imagePic img{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.card:hover .imagePic img{transform:scale(1.055)}
+.crustCard{min-height:430px}
+.crustPic{
+  height:230px;
+  background:linear-gradient(160deg,#fff,#f7ecdc);
+  border:1px solid #eadcc8;
+  box-shadow:inset 0 1px 0 #fff;
+}
+.crustPic img{transition:transform .35s ease}
+.crustCard:hover .crustPic img{transform:scale(1.06) rotate(-.4deg)}
+.price{
+  color:var(--r);
+  font-size:23px;
+  letter-spacing:-.6px;
+}
+.muted{color:var(--muted);line-height:1.45}
+.tabs button{
+  border:1px solid #ded0bd;
+  background:rgba(255,253,248,.9);
+  box-shadow:0 5px 13px rgba(80,56,33,.05);
+  transition:.16s ease;
+}
+.tabs button:hover{transform:translateY(-2px);border-color:var(--r)}
+.tabs .active{
+  background:linear-gradient(135deg,var(--g2),var(--g));
+  box-shadow:0 8px 18px rgba(23,107,69,.22);
+}
+.summary{
+  background:linear-gradient(145deg,#fffdf8,#fff7ea);
+  border:1px solid #eadcc8;
+  box-shadow:var(--shadow);
+  animation:panelIn .35s ease both;
+}
+.row{border-bottom-color:#e4d7c5}
+.cartbar{
+  height:80px;
+  background:rgba(27,34,29,.95);
+  backdrop-filter:blur(18px);
+  box-shadow:0 -10px 34px rgba(37,25,15,.22);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.cartprice{color:#ffe7b4;font-size:22px}
+.cartbar button{
+  min-height:48px;
+  border-radius:14px;
+  transition:transform .14s ease,box-shadow .14s ease,filter .14s ease;
+}
+.cartbar button:active{transform:scale(.94)}
+.prev{background:#f1e8dc;color:#352f29}
+.next{
+  background:linear-gradient(135deg,var(--r2),var(--r),#df2a46);
+  box-shadow:0 8px 20px rgba(200,16,46,.27);
+}
+.next:hover{filter:brightness(1.06);box-shadow:0 11px 25px rgba(200,16,46,.34)}
+.hero{
+  background:
+    radial-gradient(circle at 20% 18%,rgba(255,255,255,.12),transparent 29%),
+    radial-gradient(circle at 85% 75%,rgba(200,16,46,.22),transparent 30%),
+    linear-gradient(135deg,#0d5033,#176b45 55%,#113c29);
+}
+.heroBox{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(150deg,rgba(255,255,255,.98),rgba(255,247,232,.98));
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 28px 65px rgba(0,0,0,.24);
+  animation:heroIn .65s cubic-bezier(.2,.8,.2,1) both;
+}
+.heroBox::before{
+  content:"";
+  position:absolute;
+  width:360px;height:360px;
+  border-radius:50%;
+  right:-190px;top:-210px;
+  background:radial-gradient(circle,rgba(200,16,46,.13),transparent 66%);
+}
+.heroLogo{filter:drop-shadow(0 8px 13px rgba(200,16,46,.12))}
+.hero h1{letter-spacing:-2px;line-height:1.16}
+.start{
+  background:linear-gradient(135deg,var(--r2),var(--r),#e3304d);
+  box-shadow:0 12px 30px rgba(200,16,46,.28);
+  transition:transform .17s ease,box-shadow .17s ease,filter .17s ease;
+  position:relative;
+  overflow:hidden;
+}
+.start:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 17px 35px rgba(200,16,46,.34)}
+.start:active{transform:scale(.97)}
+.modal{
+  background:linear-gradient(145deg,#fffdf9,#fff5e7);
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 30px 70px rgba(0,0,0,.3);
+  animation:modalIn .24s cubic-bezier(.2,.8,.2,1) both;
+}
+.backdrop{animation:fadeIn .18s ease both}
+.keypad button,.qty button{
+  box-shadow:0 5px 12px rgba(80,54,29,.07);
+  transition:transform .12s ease,background .12s ease;
+}
+.keypad button:active,.qty button:active{transform:scale(.92);background:#f5e5d5}
+.phoneDisplay{background:#fffaf2;border-color:#dccdb8}
+.done{animation:panelIn .4s ease both}
+.stage>*{animation:pageIn .3s cubic-bezier(.2,.8,.2,1) both}
+
+/* 터치 리플 */
+.ripple{
+  position:fixed;
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:rgba(255,255,255,.56);
+  pointer-events:none;
+  z-index:9999;
+  animation:ripple .5s ease-out forwards;
+}
+
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(18px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes heroIn{
+  from{opacity:0;transform:translateY(26px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(18px) scale(.965)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes ripple{
+  to{transform:translate(-50%,-50%) scale(7);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+@media(max-width:560px){
+  .stage{padding:20px 14px 100px}
+  .card{border-radius:20px;padding:16px}
+  .pic{height:150px}
+  .cartbar{height:74px}
+}
+
+
+/* v25 도우 이미지 최적화 */
+.crustPic{background:linear-gradient(160deg,#fffdf9,#f9efe2)}
+.crustPic img{object-fit:contain;max-width:100%;max-height:100%;padding:6px}
+
+</style><script src="data.js"></script></head><body><div id="main" class="app"></div><div id="cart"></div><div id="modal"></div><script>
+const money=n=>new Intl.NumberFormat('ko-KR').format(Math.round(n))+'원';
+const {PIZZAS,CRUSTS,TOPPINGS,SIDES,DRINKS,SAUCES,SETTINGS}=window.KIOSK_DATA;
+
+function escAttr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function itemPic(item,emoji='🍕'){if(!item||!item.image)return `<div class="pic">${emoji}</div>`;const src='assets/images/'+encodeURIComponent(item.image).replace(/%2F/g,'/');return `<div class="pic imagePic"><img src="${src}" alt="${escAttr(item.name)}" onerror="this.parentElement.classList.remove('imagePic');this.parentElement.innerHTML='${emoji}'"></div>`}
+const flow=['type','timing','promo','size','mode','pizza','crust','topping','side','drink','review','phone'];
+const state={step:'home',orderType:null,orderTiming:null,reserveTime:null,reserveHour:null,reserveMinute:null,promo:null,set:null,size:null,mode:'single',left:null,right:null,crust:null,toppingChoice:null,toppings:{},extraSides:{},extraDrinks:{},setSides:{},setDrink:null,cat:'ALL',modal:null,disposables:null,phone:'',orderNo:null};
+function po(id){return PIZZAS.find(x=>x.id===id)};function sum(o){return Object.values(o).reduce((a,b)=>a+b,0)};
+function reset(){Object.assign(state,{step:'home',orderType:null,orderTiming:null,reserveTime:null,reserveHour:null,reserveMinute:null,promo:null,set:null,size:null,mode:'single',left:null,right:null,crust:null,toppingChoice:null,toppings:{},extraSides:{},extraDrinks:{},setSides:{},setDrink:null,cat:'ALL',modal:null,disposables:null,phone:'',orderNo:null})}
+function progress(){if(state.step==='home'||state.step==='done')return '';let i=Math.max(0,flow.indexOf(state.step));return `<div class="progress">${flow.map((x,n)=>`<span class="${n<i?'done':n===i?'on':''}">${['방식','시간','혜택','사이즈','구성','피자','크러스트','토핑','사이드','음료','확인','전화번호'][n]}</span>`).join('')}</div>`}
+function shell(c){return `<div class="head"><div class="brand"><img class="brandLogo" src="assets/images/papajohns_red_logo.png" alt="Papa Johns"><b class="brandName">${SETTINGS.STORE_NAME}</b></div></div>${progress()}<div class="stage">${c}</div>`}
+function render(){
+ const main=document.getElementById('main');
+ main.classList.remove('pageSwap');
+ void main.offsetWidth;
+ main.innerHTML=view();
+ main.classList.add('pageSwap');
+ document.getElementById('cart').innerHTML=bar();
+ document.getElementById('modal').innerHTML=modalView();
+}
+function view(){
+ if(state.step==='home')return `<section class="hero"><div class="heroBox"><img class="heroLogo" src="assets/images/papajohns_red_logo.png" alt="Papa Johns"><h1>갓 구운 피자를<br>지금 주문하세요</h1><button class="start" onclick="state.step='type';render()">주문하기</button></div></section>`;
+ if(state.step==='type')return shell(`<h1 class="title">어떻게 이용하시나요?</h1><div class="grid two"><button class="card" onclick="state.orderType='takeout';state.step='timing';render()"><h2>🛍️ 포장하기</h2></button><button class="card" onclick="state.orderType='dinein';state.orderTiming='now';state.step='promo';render()"><h2>🍽️ 먹고가기</h2></button></div>`);
+ if(state.step==='timing')return shell(`<h1 class="title">포장 시간을 선택해 주세요</h1><div class="grid two"><button class="card" onclick="state.orderTiming='now';state.reserveTime=null;state.step='promo';render()"><h2>바로 주문</h2><p>준비되는 대로 수령</p></button><button class="card" ${hasReserveSlots()?'':'disabled'} onclick="state.orderTiming='reserve';state.step='reserve';render()"><h2>예약 주문</h2><p>${hasReserveSlots()?'오늘 원하는 시간에 수령':'오늘 예약 마감'}</p></button></div>`);
+ if(state.step==='reserve'){const info=reserveWheelData();return shell(`<h1 class="title">예약 시간을 선택해 주세요</h1><div class="notice">현재 시각에서 30분 이후부터, 오늘 21:20까지만 예약할 수 있습니다.</div>${info.hours.length?`<div class="wheelWrap"><div class="wheelCol"><label>시</label><select size="6" onchange="setReserveHour(this.value)">${info.hours.map(h=>`<option value="${h}" ${state.reserveHour===h?'selected':''}>${h}시</option>`).join('')}</select></div><div class="wheelSep">:</div><div class="wheelCol"><label>분</label><select size="6" onchange="setReserveMinute(this.value)">${info.minutes.map(m=>`<option value="${m}" ${state.reserveMinute===m?'selected':''}>${m}분</option>`).join('')}</select></div></div><div class="notice">선택시간: <b>${state.reserveHour&&state.reserveMinute?state.reserveHour+':'+state.reserveMinute:'시간과 분을 선택해 주세요'}</b></div><button class="next" style="width:100%;padding:18px;border:0;border-radius:14px;font-weight:900" ${validReserveSelection()?'':'disabled'} onclick="confirmReserve()">예약시간 확정</button>`:`<div class="notice">오늘 예약 가능한 시간이 없습니다. 바로 주문을 이용해 주세요.</div>`}`)};
+ if(state.step==='promo')return shell(`<h1 class="title">혜택을 선택해 주세요</h1><div class="grid">${state.orderType==='takeout'?`<button class="card" onclick="pickPromo('happy')"><h2>해피아워</h2></button><button class="card" onclick="pickPromo('takeout')"><h2>포장 20%</h2></button>`:''}<button class="card" onclick="pickPromo('upup')"><h2>UP & UP</h2></button><button class="card" onclick="pickPromo('set')"><h2>세트 메뉴</h2><p>2인 · 3인 · 4인</p></button><button class="card" onclick="pickPromo('normal')"><h2>일반 주문</h2></button></div>`);
+ if(state.step==='setChoice')return shell(`<h1 class="title">세트를 선택해 주세요</h1><div class="grid">${[2,3,4].map(n=>`<button class="card" onclick="chooseSet(${n})"><h2>${n}인 세트</h2><p>${n===2?'R 피자 + 사이드 1 + 500ml 음료':n===3?'L 피자 + 사이드 1 + 대용량 음료':'F 피자 + 사이드 2 + 대용량 음료'}</p><div class="price">${money(n===2?24000:n===3?33000:42000)}</div></button>`).join('')}</div>`);
+ if(state.step==='size')return shell(`<h1 class="title">사이즈 선택</h1><div class="grid">${['R','L','F'].map(s=>`<button class="card" onclick="state.size='${s}';state.step='mode';render()"><h2>${s}</h2>${state.promo==='takeout'?`<p>${s==='R'?'포장 할인 불가':'20% 할인'}</p>`:''}</button>`).join('')}</div>`);
+ if(state.step==='mode')return shell(`<h1 class="title">피자 구성 선택</h1><div class="grid two"><button class="card" onclick="state.mode='single';state.step='pizza';render()"><h2>한 판</h2></button><button class="card" ${state.size==='R'?'disabled':''} onclick="state.mode='half';state.step='pizza';render()"><h2>하프앤하프</h2><p>+1,000원</p></button></div>`);
+ if(state.step==='pizza'){let list=PIZZAS.filter(p=>(state.cat==='ALL'||p.cat===state.cat)&&p[state.size]!=null);if(state.promo==='upup')list=list.filter(p=>p.id!=='P011');return shell(`${state.mode==='half'&&state.left?`<div class="halfPreview"><div class="preview">${itemPic(po(state.left))}<b>${po(state.left).name}</b></div><div class="preview"><div class="pic">?</div><b>두 번째 피자 선택</b></div></div>`:''}<h1 class="title">${state.mode==='half'?(state.left?'두 번째 피자 선택':'첫 번째 피자 선택'):'피자 선택'}</h1><div class="tabs">${['ALL','BEST','SPECIALTY','CLASSIC','THIN'].map(c=>`<button class="${state.cat===c?'active':''}" onclick="state.cat='${c}';render()">${c}</button>`).join('')}</div><div class="grid">${list.map(p=>{const blocked=state.mode==='half'&&state.left&&!halfAllowed(state.left,p.id);const happy=state.promo==='happy';const normal=p[state.size];const happyDiscount=happy?Math.max(0,normal-15000):0;const priceHtml=happy?`<div class="muted" style="text-decoration:line-through;margin-top:6px">정상금액 ${money(normal)}</div><div class="discount" style="margin-top:5px">할인금액 −${money(happyDiscount)}</div><div class="price" style="margin-top:6px">할인 후 ${money(15000)}</div>`:`<div class="price">${money(normal)}</div>`;return `<button class="card" ${blocked?'disabled':''} onclick="pickPizza('${p.id}')">${itemPic(p)}<h3>${p.name}</h3>${priceHtml}${blocked?`<div class="disabledReason">선택한 피자와 하프앤하프 불가</div>`:''}</button>`}).join('')}</div>`)};
+ if(state.step==='crust'){let list=state.promo==='upup'?CRUSTS.filter(c=>['골드링','치즈롤','크루아상'].includes(c.name)):CRUSTS.filter(c=>!c.hidden&&c[state.size]!=null);return shell(`<h1 class="title">크러스트를 선택해 주세요</h1><p class="sub">선택한 사이즈에 따라 가능한 크러스트와 추가금이 자동 적용됩니다.</p><div class="grid crustGrid">${list.map(c=>`<button class="card crustCard" onclick="selectCrust('${c.name}')"><h2>${c.name}${c.sizeLabel?`<span class="sizeTag">${c.sizeLabel}</span>`:''}</h2><div class="crustPic"><img src="assets/images/${encodeURIComponent(c.image)}" alt="${escAttr(c.name)}"></div><p class="muted">${c.desc||''}</p><div class="price">${state.promo==='upup'?'무료':c[state.size]?'+ '+money(c[state.size]):'추가금 없음'}</div>${state.promo==='upup'&&c.name==='크루아상'?'<p class="disabledReason">UP&UP 선택 시 라지 사이즈로 제공</p>':''}</button>`).join('')}</div>`)};
+ if(state.step==='topping'){if(!state.toppingChoice)return shell(`<h1 class="title">토핑을 추가하시겠어요?</h1><div class="grid two"><button class="card" onclick="state.toppingChoice='add';render()"><h2>토핑 추가하기</h2><p>같은 종류 최대 2개, 총 5개까지</p></button><button class="card" onclick="state.toppingChoice='skip';state.toppings={};state.step='side';render()"><h2>건너뛰기</h2><p>토핑 없이 다음 단계로 이동</p></button></div>`);return shell(`<h1 class="title">토핑 선택</h1><div class="notice">같은 종류 최대 2개, 총 5개까지 선택 가능합니다. 현재 ${sum(state.toppings)}/5개</div><div class="grid">${TOPPINGS.map(t=>{let q=state.toppings[t.id]||0;return `<div class="card ${q?'active':''}" onclick="toppingQty('${t.id}',1)">${q?`<span class="badge">${q}개 선택</span>`:''}<h3>${t.name}</h3><div class="price">+${money(t.price[state.size])}</div><div class="qty"><button onclick="event.stopPropagation();toppingQty('${t.id}',-1)">−</button><b>${q}</b><button onclick="event.stopPropagation();toppingQty('${t.id}',1)">＋</button></div></div>`}).join('')}</div>`)};
+ if(state.step==='side'){if(state.set){const need=state.set===4?2:1;return shell(`<h1 class="title">세트 포함 사이드 선택</h1><div class="notice">${need}개 선택 · 같은 메뉴 중복 가능 (${sum(state.setSides)}/${need})</div><div class="grid">${SIDES.filter(x=>state.set===2?x.set2:x.set).map(x=>setSideCard(x,need)).join('')}</div><h2 style="margin-top:28px">추가 사이드 선택</h2><div class="grid">${SIDES.map(x=>qcard(x,'extraSides')).join('')}</div>`)}return shell(`<h1 class="title">사이드 선택</h1><div class="grid">${SIDES.map(x=>qcard(x,'extraSides')).join('')}</div>`)};
+ if(state.step==='drink'){if(state.set){let provided=state.set===2?DRINKS.filter(x=>x.small):DRINKS.filter(x=>x.large);return shell(`<h1 class="title">세트 포함 음료 선택</h1><div class="grid four">${provided.map(x=>setDrinkCard(x)).join('')}</div><h2 style="margin-top:28px">추가 음료 구매</h2><p class="sub">추가 구매할 음료 카드를 터치하거나 용량별 + 버튼을 눌러 주세요.</p><div class="grid four">${drinkGroups().map(g=>drinkGroupCard(g)).join('')}</div><h2 style="margin-top:28px">소스·피클 추가</h2><div class="grid four">${SAUCES.map(x=>qcard(x,'extraDrinks')).join('')}</div>`)}return shell(`<h1 class="title">음료 선택</h1><p class="sub">음료 종류를 고른 뒤 카드 안에서 용량과 수량을 선택해 주세요.</p><div class="grid four">${drinkGroups().map(g=>drinkGroupCard(g)).join('')}</div>`)};
+ if(state.step==='review')return shell(`<h1 class="title">주문 내용 확인</h1><div class="summary">${summary()}<div class="row grand"><span>최종 결제금액</span><span>${money(price().total)}</span></div></div>`);
+ if(state.step==='phone')return shell(`<h1 class="title">전화번호를 입력해 주세요</h1><p class="sub">010은 고정입니다. 뒤 8자리를 모두 입력해야 주문을 확정할 수 있습니다.</p><div class="summary"><div class="phoneDisplay">${formatPhone(state.phone)}</div><div class="keypad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button onclick="pressPhone('${n}')">${n}</button>`).join('')}<button onclick="clearPhone()">전체삭제</button><button onclick="pressPhone('0')">0</button><button onclick="backPhone()">⌫</button></div><div class="notice">${validPhone()?`주문번호(전화번호 뒤 4자리): <b>${last4()}</b>`:'전화번호 뒤 8자리를 정확히 입력해 주세요.'}</div><button class="next" style="width:100%;padding:18px;border:0;border-radius:14px;font-weight:900" ${validPhone()?'':'disabled'} onclick="complete()">주문 확정하기</button></div>`);
+ if(state.step==='done')return shell(`<div class="done"><h1>주문이 완료되었습니다</h1><p>주문번호 · 전화번호 뒤 4자리</p><div class="num">${state.orderNo}</div><p>${state.orderTiming==='reserve'?'예약시간 '+state.reserveTime:'준비되는 대로 안내드리겠습니다.'}</p></div>`)
+}
+function pickPromo(p){state.promo=p;if(p==='set'){state.step='setChoice'}else if(p==='happy'){state.size='R';state.crust='오리지널';state.step='pizza'}else if(p==='upup'){state.size='F';state.step='mode'}else state.step='size';render()}
+function chooseSet(n){state.set=n;state.size=n===2?'R':n===3?'L':'F';state.mode='single';state.step='pizza';render()}
+function halfAllowed(first,second){if(first===second)return false;const special=['P002','P009'];if(special.includes(first))return special.includes(second);if(special.includes(second))return false;return true}
+function pickPizza(id){if(state.mode==='single'){state.left=id;afterPizza()}else if(!state.left){state.left=id;state.cat='ALL';render()}else{state.right=id;state.modal='halfConfirm';render()}}
+function afterPizza(){const selected=po(state.left);if(selected?.cat==='THIN'){state.crust='씬';state.step='topping'}else if(state.size==='R'){state.crust='오리지널';state.step='topping'}else state.step='crust';render()}
+function confirmHalf(){state.modal=null;afterPizza()}function redoHalf(){state.right=null;state.modal=null;render()}function selectCrust(name){state.crust=name;if(state.promo==='upup'&&name==='크루아상'){state.modal='croissantNotice';render();return}state.step='topping';render()}function confirmCroissant(){state.modal=null;state.step='topping';render()}function effectiveSize(){return state.promo==='upup'&&state.crust==='크루아상'?'L':state.size}function eventLabel(){return state.set?state.set+'인 세트':({happy:'해피아워',takeout:'포장 20% 할인',upup:'UP&UP',normal:'일반 주문'})[state.promo]||'혜택 미선택'}function needsDisposables(){if(state.orderType!=='takeout')return false;const extra=Object.entries(state.extraSides).some(([id,q])=>q>0&&SIDES.find(x=>x.id===id)?.disposable);const included=Object.entries(state.setSides||{}).some(([id,q])=>q>0&&SIDES.find(x=>x.id===id)?.disposable);return extra||included}function chooseDisposables(v){state.disposables=v;state.modal=null;state.step='drink';render()}
+function qcard(x,key){let q=state[key][x.id]||0;return `<div class="card ${q?'active':''}" onclick="qty('${key}','${x.id}',1,9,99)">${q?`<span class="badge">${q}개</span>`:''}${itemPic(x,'🍽️')}<h3>${x.name}</h3><div class="price">${money(x.price)}</div><div class="qty"><button onclick="event.stopPropagation();qty('${key}','${x.id}',-1,9,99)">−</button><b>${q}</b><button onclick="event.stopPropagation();qty('${key}','${x.id}',1,9,99)">＋</button></div></div>`}
+function setSideCard(x,need){let q=state.setSides[x.id]||0;return `<div class="card ${q?'active':''}" onclick="qty('setSides','${x.id}',1,2,${need})">${q?`<span class="badge">${q}개</span>`:''}${itemPic(x,'🍽️')}<h3>${x.name}</h3><div class="price">세트 포함</div><div class="qty"><button onclick="event.stopPropagation();qty('setSides','${x.id}',-1,2,${need})">−</button><b>${q}</b><button ${sum(state.setSides)>=need?'disabled':''} onclick="event.stopPropagation();qty('setSides','${x.id}',1,2,${need})">＋</button></div></div>`}
+function drinkGroups(){return [
+ {name:'코카-콜라',small:'D001',large:'D002'},
+ {name:'코카-콜라 제로',small:'D003',large:'D004'},
+ {name:'스프라이트',small:'D005',large:'D006'},
+ {name:'스프라이트 제로',small:'D007',large:'D008'}
+]}
+function drinkGroupCard(g){let a=DRINKS.find(x=>x.id===g.small),b=DRINKS.find(x=>x.id===g.large),qa=state.extraDrinks[a.id]||0,qb=state.extraDrinks[b.id]||0,total=qa+qb;return `<div class="card ${total?'active':''}" onclick="qty('extraDrinks','${a.id}',1,9,99)">${total?`<span class="badge">${total}개</span>`:''}${itemPic(a,'🥤')}<h3>${g.name}</h3><div class="muted">카드 터치 시 500ml 수량 증가</div><div class="row"><span>${a.name.replace(g.name,'').trim()} · ${money(a.price)}</span><span class="qty"><button onclick="event.stopPropagation();qty('extraDrinks','${a.id}',-1,9,99)">−</button><b>${qa}</b><button onclick="event.stopPropagation();qty('extraDrinks','${a.id}',1,9,99)">＋</button></span></div><div class="row"><span>${b.name.replace(g.name,'').trim()} · ${money(b.price)}</span><span class="qty"><button onclick="event.stopPropagation();qty('extraDrinks','${b.id}',-1,9,99)">−</button><b>${qb}</b><button onclick="event.stopPropagation();qty('extraDrinks','${b.id}',1,9,99)">＋</button></span></div></div>`}
+function setDrinkCard(x){return `<button class="card ${state.setDrink===x.id?'active':''}" onclick="state.setDrink='${x.id}';render()">${state.setDrink===x.id?'<span class="badge">선택됨</span>':''}${itemPic(x,'🥤')}<h3>${x.name}</h3><div class="price">세트 포함</div></button>`}
+
+function qty(key,id,d,maxEach,maxTotal){let o=state[key],n=Math.max(0,Math.min(maxEach,(o[id]||0)+d));if(d>0&&sum(o)>=maxTotal)return;if(n)o[id]=n;else delete o[id];render()}function toppingQty(id,d){let q=state.toppings[id]||0,total=sum(state.toppings);if(d>0&&q>=2){state.modal='toppingLimitEach';render();return}if(d>0&&total>=5){state.modal='toppingLimitTotal';render();return}let n=Math.max(0,q+d);if(n)state.toppings[id]=n;else delete state.toppings[id];render()}
+function pizzaBase(){let a=po(state.left)?.[state.promo==='upup'?'L':state.size]||0;if(state.mode==='half'){let b=po(state.right)?.[state.promo==='upup'?'L':state.size]||0;return (a+b)/2}return a}
+function crustFee(){if(state.promo==='upup')return 0;return CRUSTS.find(c=>c.name===(state.crust||'오리지널'))?.[state.size]||0}
+function topFee(){return Object.entries(state.toppings).reduce((s,[id,q])=>s+(TOPPINGS.find(x=>x.id===id)?.price[effectiveSize()]||0)*q,0)}function sideFee(){return Object.entries(state.extraSides).reduce((s,[id,q])=>s+(SIDES.find(x=>x.id===id)?.price||0)*q,0)}function drinkFee(){return Object.entries(state.extraDrinks).reduce((s,[id,q])=>s+(DRINKS.find(x=>x.id===id)?.price||0)*q,0)}
+function price(){let pizza=pizzaBase(),half=state.mode==='half'?SETTINGS.HALF_EXTRA:0,crust=crustFee(),tops=topFee(),side=sideFee(),drink=drinkFee(),discount=0,label='';let product=pizza+half+crust+tops;if(state.set){product=(state.set===2?24000:state.set===3?33000:42000)+half+crust+tops;label='세트 메뉴'}else if(state.promo==='happy'){let normal=po(state.left).R+tops;discount=Math.max(0,normal-(SETTINGS.HAPPY_PRICE+tops));product=SETTINGS.HAPPY_PRICE+tops;label='해피아워 할인'}else if(state.promo==='takeout'&&['L','F'].includes(state.size)){discount=Math.round(product*(SETTINGS.PACK_DISCOUNT/100));product-=discount;label=`포장 할인 ${SETTINGS.PACK_DISCOUNT}%`}else if(state.promo==='upup'){let normalSize=effectiveSize(),normalPizza=state.mode==='half'?((po(state.left)[normalSize]+po(state.right)[normalSize])/2):po(state.left)[normalSize],normalCrust=state.crust==='크루아상'?6000:(CRUSTS.find(c=>c.name===state.crust)?.[normalSize]||0),normal=normalPizza+half+normalCrust+tops;let pay=pizza+half+tops;discount=Math.max(0,normal-pay);product=pay;label='UP&UP 할인'}return{pizza,half,crust,tops,side,drink,discount,label,total:product+side+drink}}
+function summary(){let p=price(),rows=[['이용방법',state.orderType==='takeout'?'포장':'먹고가기'],['주문시간',state.orderTiming==='reserve'?`예약 ${state.reserveTime}`:'바로 주문'],['선택 혜택',eventLabel()],['피자',state.mode==='half'?`${po(state.left).name} / ${po(state.right).name}`:po(state.left).name],['사이즈',effectiveSize()+(state.promo==='upup'&&state.crust==='크루아상'?' (크루아상은 라지 제공)':'')],['크러스트',state.crust||'오리지널']];let html=rows.map(x=>`<div class="row"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');if(state.disposables!==null)html+=`<div class="row"><b>일회용품</b><span>${state.disposables?'필요':'필요 없음'}</span></div>`;[['하프앤하프 추가금',p.half],['토핑 추가금',p.tops],['크러스트 추가금',p.crust],['사이드 추가금',p.side],['음료 추가금',p.drink]].forEach(x=>{if(x[1])html+=`<div class="row"><b>${x[0]}</b><span>+${money(x[1])}</span></div>`});if(p.discount)html+=`<div class="row discount"><b>${p.label}</b><span>−${money(p.discount)}</span></div>`;return html}
+function canNext(){if(state.step==='topping'||state.step==='review')return true;if(state.step==='side')return state.set?sum(state.setSides)===(state.set===4?2:1):true;if(state.step==='drink')return state.set?!!state.setDrink:true;return false}
+function nextStep(){if(state.step==='topping')state.step='side';else if(state.step==='side'){if(needsDisposables()&&state.disposables===null){state.modal='disposables';render();return}else state.step='drink';}else if(state.step==='drink')state.step='review';else if(state.step==='review')state.step='phone';render()}
+function prevStep(){const m={timing:'type',reserve:'timing',promo:state.orderType==='takeout'?'timing':'type',setChoice:'promo',size:'promo',mode:'size',pizza:state.set?'setChoice':'mode',crust:'pizza',topping:(state.size==='R'||po(state.left)?.cat==='THIN')?'pizza':'crust',side:'topping',drink:'side',review:'drink',phone:'review'};state.step=m[state.step]||'home';render()}
+function bar(){if(['home','done'].includes(state.step))return '';let cur=state.left?(state.mode==='half'&&state.right?po(state.left).name+' / '+po(state.right).name:po(state.left).name):'아직 피자를 선택하지 않았습니다';let timing=state.orderType==='takeout'?(state.orderTiming==='reserve'?'포장 예약 '+(state.reserveTime||'시간 미선택'):'포장 바로주문'):'먹고가기';let opts=[eventLabel(),timing,state.left?effectiveSize():'',state.crust||'',sum(state.toppings)?'토핑 '+sum(state.toppings)+'개':'',sum(state.extraSides)?'사이드 '+sum(state.extraSides)+'개':'',sum(state.extraDrinks)?'음료 '+sum(state.extraDrinks)+'개':''].filter(Boolean).join(' · ');return `<div class="cartbar"><div class="cartmain"><div class="carttitle">${cur}</div><div class="cartdetail">${opts}</div></div><span class="cartprice">${state.left?money(price().total):''}</span><button class="prev" onclick="reset();render()">처음으로</button>${state.step!=='type'?'<button class="prev" onclick="prevStep()">이전</button>':''}${canNext()?`<button class="next" onclick="nextStep()">다음</button>`:''}</div>`}
+function modalView(){if(!state.modal)return '';if(state.modal==='halfConfirm')return `<div class="backdrop"><div class="modal"><h2>하프앤하프 선택 확인</h2><div class="halfPreview"><div class="preview">${itemPic(po(state.left))}<b>${po(state.left).name}</b></div><div class="preview">${itemPic(po(state.right))}<b>${po(state.right).name}</b></div></div><div class="notice">선택하신 두 가지 피자로 하프앤하프를 구성합니다.</div><div class="modalBtns"><button class="prev" onclick="redoHalf()">다시 고르기</button><button class="next" onclick="confirmHalf()">계속하기</button></div></div></div>`;if(state.modal==='croissantNotice')return `<div class="backdrop"><div class="modal"><h2>크루아상 크러스트 안내</h2><div class="notice">UP&UP에서 크루아상 선택 시 해당 피자는 <b>라지 사이즈</b>로 제공됩니다.</div><div class="modalBtns" style="grid-template-columns:1fr"><button class="next" onclick="confirmCroissant()">확인하고 계속하기</button></div></div></div>`;if(state.modal==='disposables')return `<div class="backdrop"><div class="modal"><h2>일회용품이 필요하신가요?</h2><div class="notice">포크·스푼 등 일회용품 제공 여부를 선택해 주세요.</div><div class="modalBtns"><button class="prev" onclick="chooseDisposables(false)">필요하지 않아요</button><button class="next" onclick="chooseDisposables(true)">필요해요</button></div></div></div>`;if(state.modal==='toppingLimitEach')return `<div class="backdrop"><div class="modal"><h2>추가 토핑 안내</h2><div class="notice">같은 종류의 토핑은 최대 <b>2개</b>까지 추가할 수 있습니다.</div><div class="modalBtns" style="grid-template-columns:1fr"><button class="next" onclick="state.modal=null;render()">확인</button></div></div></div>`;if(state.modal==='toppingLimitTotal')return `<div class="backdrop"><div class="modal"><h2>추가 토핑 안내</h2><div class="notice">추가 토핑은 피자 한 판당 총 <b>5개</b>까지 선택할 수 있습니다.<br>토핑 한 종류당 최대 2개까지 가능합니다.</div><div class="modalBtns" style="grid-template-columns:1fr"><button class="next" onclick="state.modal=null;render()">확인</button></div></div></div>`;return ''}
+function reserveLimit(){let d=new Date();d.setHours(21,20,0,0);return d}function reserveStart(){let d=new Date(Date.now()+30*60000);d.setMinutes(Math.ceil(d.getMinutes()/10)*10,0,0);return d}function hasReserveSlots(){return reserveStart()<=reserveLimit()}function reserveWheelData(){let start=reserveStart(),limit=reserveLimit(),hours=[];if(start<=limit){for(let h=start.getHours();h<=21;h++){let hh=String(h).padStart(2,'0');if(validMinutesForHour(hh,start).length)hours.push(hh)}}if(!state.reserveHour||!hours.includes(state.reserveHour))state.reserveHour=hours[0]||null;if(state.reserveHour){let valid=validMinutesForHour(state.reserveHour,start);if(!valid.includes(state.reserveMinute))state.reserveMinute=valid[0]||null}return{hours,minutes:state.reserveHour?validMinutesForHour(state.reserveHour,start):[]}}function validMinutesForHour(h,start){let limit=reserveLimit();return ['00','10','20','30','40','50'].filter(m=>{let d=new Date();d.setHours(Number(h),Number(m),0,0);return d>=start&&d<=limit})}function setReserveHour(h){state.reserveHour=h;let mins=validMinutesForHour(h,reserveStart());if(!mins.includes(state.reserveMinute))state.reserveMinute=mins[0]||null;render()}function setReserveMinute(m){state.reserveMinute=m;render()}function validReserveSelection(){if(!state.reserveHour||!state.reserveMinute)return false;let d=new Date();d.setHours(Number(state.reserveHour),Number(state.reserveMinute),0,0);return d>=new Date(Date.now()+30*60000)&&d<=reserveLimit()&&d.getDate()===new Date().getDate()}function confirmReserve(){if(!validReserveSelection())return;state.reserveTime=state.reserveHour+':'+state.reserveMinute;state.step='promo';render()}function pressPhone(n){if(state.phone.length<8){state.phone+=n;render()}}function backPhone(){state.phone=state.phone.slice(0,-1);render()}function clearPhone(){state.phone='';render()}function formatPhone(v){let x=v.replace(/\D/g,'').slice(0,8);return '010-'+(x.slice(0,4).padEnd(4,'•'))+'-'+(x.slice(4,8).padEnd(4,'•'))}function validPhone(){return /^\d{8}$/.test(state.phone)}function last4(){return state.phone.slice(-4)}function complete(){if(!validPhone())return;state.orderNo=last4();state.step='done';render();setTimeout(()=>{reset();render()},5000)}
+render();
+
+document.addEventListener('pointerdown',e=>{
+ const target=e.target.closest('button');
+ if(!target||target.disabled)return;
+ const r=document.createElement('span');
+ r.className='ripple';
+ const size=Math.max(target.offsetWidth,target.offsetHeight)*.28;
+ r.style.width=r.style.height=size+'px';
+ r.style.left=e.clientX+'px';
+ r.style.top=e.clientY+'px';
+ document.body.appendChild(r);
+ setTimeout(()=>r.remove(),520);
+},{passive:true});
+
+</script></body></html>
